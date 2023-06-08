@@ -17,7 +17,7 @@ const Formulario = () => {
   const consultarAPI = async () => {
     try {
       const respuesta = await fetch(
-        `https://newsdata.io/api/1/news?apikey=pub_24223d78f037e8be1be6f46aaaf31129c76cf&category=${categoria}&country=${pais}`
+        `https://newsdata.io/api/1/news?apikey=pub_24226bbf6e7720ff5842fd3588486e1d1dc24&category=${categoria}&country=${pais}`
       );
       const dato = await respuesta.json();
       await setNoticias(dato);
