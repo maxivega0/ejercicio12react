@@ -5,7 +5,7 @@ import ListaNoticias from "./ListaNoticias";
 const Formulario = () => {
   const [noticias, setNoticias] = useState("");
   const [categoria, setCategoria] = useState("business");
-  const [pais, setPais] = useState("es");
+  const [pais, setPais] = useState("ar");
   const [mostrarNoticias, setMostrarNoticias] = useState(false);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoria);
   const [paisSeleccionado, setPaisSeleccionado] = useState(pais);
