@@ -5,17 +5,19 @@ import ListaNoticias from "./ListaNoticias";
 const Formulario = () => {
   const [noticias, setNoticias] = useState("");
   const [categoria, setCategoria] = useState("business");
+  const [pais, setPais] = useState("es");
   const [mostrarNoticias, setMostrarNoticias] = useState(false);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoria);
+  const [paisSeleccionado, setPaisSeleccionado] = useState(pais);
 
   useEffect(() => {
     consultarAPI();
-  }, [categoriaSeleccionada]);
+  }, [categoriaSeleccionada, paisSeleccionado]);
 
   const consultarAPI = async () => {
     try {
       const respuesta = await fetch(
-        `https://newsdata.io/api/1/news?apikey=pub_24223d78f037e8be1be6f46aaaf31129c76cf&category=${categoria}`
+        `https://newsdata.io/api/1/news?apikey=pub_24223d78f037e8be1be6f46aaaf31129c76cf&category=${categoria}&country=${pais}`
       );
       const dato = await respuesta.json();
       await setNoticias(dato);
@@ -30,25 +32,48 @@ const Formulario = () => {
     e.preventDefault();
     setCategoria(e.target.value);
   };
+  const handlePais = (e) => {
+    setPais(e.target.value);
+  };
 
   return (
     <>
       <Form className="row">
-        <Form.Group className="mb-3 d-flex flex-column" controlId="tarea">
-          <Form.Select onChange={(e) => handleSubmit(e)}>
-            <option>Elige que tipo de noticia te interesa</option>
-            <option value="business">Negocios</option>
-            <option value="entertainment">Entretenimiento</option>
-            <option value="world">Globales</option>
-            <option value="health">Salud</option>
-            <option value="science">Ciencia</option>
-            <option value="sports">Deportes</option>
-            <option value="technology">Tecnologia</option>
-          </Form.Select>
+        <Form.Group className="mb-3 d-flex flex-column" controlId="noticia">
+          <Container>
+            <Form.Label>Seleccione su pais</Form.Label>
+            <Form.Select onChange={(e) => handlePais(e)}>
+              <option value="">Seleccionar pais</option>
+              <option value="de">Alemania</option>
+              <option value="ar">Argentina</option>
+              <option value="br">Brasil</option>
+              <option value="cl">Chile</option>
+              <option value="us">Estados Unidos</option>
+              <option value="es">España</option>
+              <option value="mx">Mexico</option>
+              <option value="jp">Japon</option>
+            </Form.Select>
+          </Container>
+          <Container className="my-3">
+            <Form.Label>Seleccione la categoria de noticia</Form.Label>
+            <Form.Select onChange={(e) => handleSubmit(e)}>
+              <option>Elige que tipo de noticia te interesa</option>
+              <option value="business">Negocios</option>
+              <option value="entertainment">Entretenimiento</option>
+              <option value="world">Globales</option>
+              <option value="health">Salud</option>
+              <option value="science">Ciencia</option>
+              <option value="sports">Deportes</option>
+              <option value="technology">Tecnologia</option>
+            </Form.Select>
+          </Container>
           <Container className="my-3 text-center">
             <Button
               variant="warning"
-              onClick={() => setCategoriaSeleccionada(categoria)}
+              onClick={() => {
+                setCategoriaSeleccionada(categoria);
+                setPaisSeleccionado(pais);
+              }}
             >
               Buscar
             </Button>

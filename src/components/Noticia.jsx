@@ -6,7 +6,7 @@ import { Button, Card } from "react-bootstrap/";
 
 const Noticia = ({ noticia }) => {
   {
-    console.log(noticia);
+    // console.log(noticia);
   }
   return (
     <>
