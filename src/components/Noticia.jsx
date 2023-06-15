@@ -23,7 +23,7 @@ const Noticia = ({ noticia }) => {
         </Card.Header>
         <Card.Body>
           <Card.Title>{noticia.title || "No existe titulo"}</Card.Title>
-          <Card.Text className="">
+          <Card.Text className="text-truncate">
             {noticia.description || "No pudimos encontrar la descripcion"}
           </Card.Text>
         </Card.Body>
